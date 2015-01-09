@@ -29,20 +29,20 @@ class elk::logstash(
     }
 
     logstash::configfile { 'syslog-udp-receiver':
-      source => 'puppet:///modules/elk/etc/logstash/conf.d/syslog-udp-receiver.conf',
-      order  => 10,
+      content => template('elk/etc/logstash/conf.d/syslog-udp-receiver.conf.erb'),
+      order   => 10,
     }
 
     if $ssl_receiver == true {
       logstash::configfile { 'syslog-tcp-ssl-receiver':
-        source => 'puppet:///modules/elk/etc/logstash/conf.d/syslog-tcp-ssl-receiver.conf',
+        content => template('elk/etc/logstash/conf.d/syslog-tcp-ssl-receiver.conf.erb'),
         order  => 20,
       }
     }
 
     logstash::configfile { 'output-elasticsearch':
-      source => 'puppet:///modules/elk/etc/logstash/conf.d/output-elasticsearch.conf',
-      order  => 30,
+      content => template('elk/etc/logstash/conf.d/output-elasticsearch.conf.erb'),
+      order  => 60,
     }
   }
 
