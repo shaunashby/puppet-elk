@@ -45,6 +45,7 @@ class elk(
 
   class { 'elk::logstash':
     ensure       => $_ensure,
+    ssl_receiver => false,
   }
 
 }

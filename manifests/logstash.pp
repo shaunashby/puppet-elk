@@ -10,7 +10,10 @@
 #
 #--------------------------------------------------------------------
 
-class elk::logstash {
+class elk::logstash(
+  $ensure          = 'running',
+  $ssl_receiver    = false,
+  ) {
   $defaults = {
     'LS_USER' => 'root',
     'LS_OPTS' => '"-w 4"'
@@ -22,19 +25,22 @@ class elk::logstash {
       ensure          => $ensure,
     }
 
-  logstash::configfile { 'syslog-udp-receiver':
-    source => 'puppet:///modules/elk/etc/logstash/conf.d/syslog-udp-receiver.conf',
-    order  => 10,
-  }
+    logstash::configfile { 'syslog-udp-receiver':
+      source => 'puppet:///modules/elk/etc/logstash/conf.d/syslog-udp-receiver.conf',
+      order  => 10,
+    }
 
-  logstash::configfile { 'syslog-tcp-ssl-receiver':
-    source => 'puppet:///modules/elk/etc/logstash/conf.d/syslog-tcp-ssl-receiver.conf',
-    order  => 20,
-  }
+    if $ssl_receiver == true {
+      logstash::configfile { 'syslog-tcp-ssl-receiver':
+        source => 'puppet:///modules/elk/etc/logstash/conf.d/syslog-tcp-ssl-receiver.conf',
+        order  => 20,
+      }
+    }
 
-  logstash::configfile { 'output-elasticsearch':
-    source => 'puppet:///modules/elk/etc/logstash/conf.d/output-elasticsearch.conf',
-    order  => 30,
+    logstash::configfile { 'output-elasticsearch':
+      source => 'puppet:///modules/elk/etc/logstash/conf.d/output-elasticsearch.conf',
+      order  => 30,
+    }
   }
 
 }
