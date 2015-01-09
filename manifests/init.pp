@@ -43,5 +43,6 @@ class elk(
     fail('ensure parameter must be running or stopped')
   }
 
+  class { 'elk::logstash': }
 
-  }
+}
