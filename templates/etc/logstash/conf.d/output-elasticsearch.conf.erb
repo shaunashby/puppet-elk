@@ -1,0 +1,10 @@
+#
+output {
+        elasticsearch {
+                host     => "<%= @logstash_es_listener_hostname %>"
+                port     => "9200"
+                cluster  => "DFI-elk"
+                index    => "dfi-%{+YYYY.MM.dd}"
+                protocol => "http"
+        }
+}
