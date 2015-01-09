@@ -13,7 +13,7 @@
 class elk::logstash {
   $defaults = {
     'LS_USER' => 'root',
-    'LS_OPTS' => '-w 4'
+    'LS_OPTS' => '"-w 4"'
   }
 
   if $ensure == 'present' {
