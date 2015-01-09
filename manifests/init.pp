@@ -47,8 +47,9 @@ class elk(
 
 
   class { 'elk::logstash':
-    ensure       => $_ensure,
-    ssl_receiver => true,
+    ensure                         => $_ensure,
+    ssl_receiver                   => true,
+    logstash_ssl_listener_hostname => "${fqdn}",
   }
 
 }
