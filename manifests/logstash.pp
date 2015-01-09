@@ -15,6 +15,7 @@ class elk::logstash(
   $ssl_receiver                   = false,
   $ssl_enable                     = false,
   $ssl_verify                     = true,
+  $ssl_certs_basedir              = '/etc/pki/logstash',
   $logstash_listener_hostname     = 'localhost',
   $logstash_ssl_listener_hostname = 'localhost',
   $logstash_es_listener_hostname  = 'localhost',
@@ -37,9 +38,61 @@ class elk::logstash(
 
     if $ssl_receiver == true {
       # Set up the SSL certificates:
-      $logstash_ssl_listener_ca_cert   = "/etc/pki/logstash/ca.pem"
-      $logstash_ssl_listener_host_cert = "/etc/pki/logstash/${logstash_ssl_listener_hostname}.cert.pem"
-      $logstash_ssl_listener_host_key  = "/etc/pki/logstash/${logstash_ssl_listener_hostname}.key.pem"
+      file { "${ssl_certs_basedir}":
+        ensure => directory,
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0600',
+      }
+
+      file { "${ssl_certs_basedir}/certs":
+        ensure  => directory,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0600',
+        require => File["${ssl_certs_basedir}"],
+      }
+
+      file { "${ssl_certs_basedir}/private":
+        ensure  => directory,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0600',
+        require => File["${ssl_certs_basedir}"],
+      }
+
+      $logstash_ssl_listener_ca_cert = "/etc/pki/logstash/certs/ca.pem"
+
+      file { "${logstash_ssl_listener_ca_cert}":
+        ensure  => present,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0640',
+        source  => 'puppet:///modules/elk/etc/pki/tls/certs/ca.pem',
+        require => File["${ssl_certs_basedir}/certs"],
+      }
+
+      $logstash_ssl_listener_host_cert = "/etc/pki/logstash/certs/${logstash_ssl_listener_hostname}.cert.pem"
+
+      file { "${logstash_ssl_listener_host_cert}":
+        ensure  => present,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0640',
+        source  => "puppet:///modules/elk/etc/pki/tls/certs/${logstash_ssl_listener_hostname}.cert.pem",
+        require => File["${ssl_certs_basedir}/certs"],
+      }
+
+      $logstash_ssl_listener_host_key  = "/etc/pki/logstash/private/${logstash_ssl_listener_hostname}.key.pem"
+
+      file { "${logstash_ssl_listener_host_key}":
+        ensure  => present,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0400',
+        source  => "puppet:///modules/elk/etc/pki/tls/private/${logstash_ssl_listener_hostname}.key.pem",
+        require => File["${ssl_certs_basedir}/private"],
+      }
 
       logstash::configfile { 'syslog-tcp-ssl-receiver':
         content => template('elk/etc/logstash/conf.d/syslog-tcp-ssl-receiver.conf.erb'),
