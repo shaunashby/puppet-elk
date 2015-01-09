@@ -10,7 +10,7 @@
 #
 #--------------------------------------------------------------------
 
-class logstash {
+class elk::logstash {
   $defaults = {
     'LS_USER' => 'root',
     'LS_OPTS' => '-w 4'
