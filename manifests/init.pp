@@ -6,9 +6,8 @@
 #
 # Document parameters here.
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# [*ensure*]
+#   Make sure that the stack is running.
 #
 # === Variables
 #
@@ -23,9 +22,7 @@
 #
 # === Examples
 #
-#  class { 'elk':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#  }
+#  class { 'elk': }
 #
 # === Authors
 #
@@ -35,5 +32,7 @@
 #
 # Copyright 2014 Shaun ASHBY, DFI Service SA.
 #
-class elk($ensure=present,$options={}) {  
+class elk(
+  $ensure = $elk::params::ensure
+  ) inherits elk::params {
 }
