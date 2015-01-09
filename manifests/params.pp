@@ -11,7 +11,9 @@
 #--------------------------------------------------------------------
 
 class elk::params {
-  $ensure = 'running'
+  $ensure           = 'running'
+  $es_instance_name = 'DFI'
+  $es_cluster_name  = 'DFI-elk'
 
   case $::osfamily {
     'Debian': {}
