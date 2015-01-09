@@ -18,12 +18,6 @@ class elk::logstash {
 
   class { '::logstash':
     init_defaults => $defaults,
-    package_url   => "https://download.elasticsearch.org/logstash/logstash/packages/centos/logstash-1.4.2-1_2c0f5a1.noarch.rpm",
-  }
-
-  logstash::configfile { 'local-input':
-    source => 'puppet:///etc/logstash/conf.d/local-input.conf',
-    order  => 10,
   }
 
   logstash::configfile { 'syslog-udp-receiver':
