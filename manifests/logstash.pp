@@ -16,9 +16,11 @@ class elk::logstash {
     'LS_OPTS' => '-w 4'
   }
 
-  class { '::logstash':
-    init_defaults => $defaults,
-  }
+  if $ensure == 'present' {
+    class { '::logstash':
+      init_defaults   => $defaults,
+      ensure          => $ensure,
+    }
 
   logstash::configfile { 'syslog-udp-receiver':
     source => 'puppet:///modules/elk/etc/logstash/conf.d/syslog-udp-receiver.conf',
