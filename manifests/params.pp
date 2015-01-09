@@ -11,7 +11,7 @@
 #--------------------------------------------------------------------
 
 class elk::params {
-  $ensure = 'present'
+  $ensure = 'running'
 
   case $::osfamily {
     'Debian': {}
