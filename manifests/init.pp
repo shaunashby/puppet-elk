@@ -35,4 +35,13 @@
 class elk(
   $ensure = $elk::params::ensure
   ) inherits elk::params {
-}
+
+  # Validate parameters:
+  if $ensure in [ 'running', 'stopped' ] {
+    $_ensure = $ensure
+  } else {
+    fail('ensure parameter must be running or stopped')
+  }
+
+
+  }
