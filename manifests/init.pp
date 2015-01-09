@@ -38,7 +38,7 @@ class elk(
 
   # Validate parameters:
   if $ensure in [ 'running', 'stopped' ] {
-    $_ensure = $ensure
+    $_ensure = 'present'
   } else {
     fail('ensure parameter must be running or stopped')
   }
