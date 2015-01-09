@@ -96,18 +96,18 @@ class elk::logstash(
 
       logstash::configfile { 'syslog-tcp-ssl-receiver':
         content => template('elk/etc/logstash/conf.d/syslog-tcp-ssl-receiver.conf.erb'),
-        order  => 20,
+        order   => 20,
       } -> File["${logstash_ssl_listener_host_cert}"]
     }
 
     logstash::configfile { 'syslog-timestamp-filter':
       source => 'puppet:///modules/elk/etc/logstash/conf.d/syslog-timestamp-filter.conf',
-      order   => 40,
+      order  => 40,
     }
 
     logstash::configfile { 'output-elasticsearch':
       content => template('elk/etc/logstash/conf.d/output-elasticsearch.conf.erb'),
-      order  => 60,
+      order   => 60,
     }
   }
 
