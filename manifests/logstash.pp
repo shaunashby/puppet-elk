@@ -13,6 +13,8 @@
 class elk::logstash(
   $ensure                         = 'running',
   $ssl_receiver                   = false,
+  $ssl_enable                     = false,
+  $ssl_verify                     = true,
   $logstash_listener_hostname     = 'localhost',
   $logstash_ssl_listener_hostname = 'localhost',
   $logstash_es_listener_hostname  = 'localhost',
@@ -34,6 +36,11 @@ class elk::logstash(
     }
 
     if $ssl_receiver == true {
+      # Set up the SSL certificates:
+      $logstash_ssl_listener_ca_cert   = "/etc/pki/logstash/ca.pem"
+      $logstash_ssl_listener_host_cert = "/etc/pki/logstash/${logstash_ssl_listener_hostname}.cert.pem"
+      $logstash_ssl_listener_host_key  = "/etc/pki/logstash/${logstash_ssl_listener_hostname}.key.pem"
+
       logstash::configfile { 'syslog-tcp-ssl-receiver':
         content => template('elk/etc/logstash/conf.d/syslog-tcp-ssl-receiver.conf.erb'),
         order  => 20,

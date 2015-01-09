@@ -3,11 +3,11 @@ input {
         tcp {
                 host       => "<%= @logstash_ssl_listener_hostname %>"
                 port       => 6514
-                ssl_enable => true
-                ssl_cacert => "/etc/pki/logstash/ca.pem"
-                ssl_cert   => "/etc/pki/logstash/<%= @logstash_ssl_listener_hostname %>.cert.pem"
-                ssl_key    => "/etc/pki/logstash/<%= @logstash_ssl_listener_hostname %>.key.pem"
-                ssl_verify => true
+                ssl_enable => "<%= @ssl_enable %>"
+                ssl_cacert => "<%= @logstash_ssl_listener_ca_cert %>"
+                ssl_cert   => "<%= @logstash_ssl_listener_host_cert %>"
+                ssl_key    => "<%= @logstash_ssl_listener_host_key %>"
+                ssl_verify => "<%= @ssl_verify %>"
                 type       => syslog
         }
 }
