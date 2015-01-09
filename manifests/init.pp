@@ -43,9 +43,12 @@ class elk(
     fail('ensure parameter must be running or stopped')
   }
 
+#  class { 'elk::elasticsearch': }
+
+
   class { 'elk::logstash':
     ensure       => $_ensure,
-    ssl_receiver => false,
+    ssl_receiver => true,
   }
 
 }
