@@ -11,8 +11,11 @@
 #--------------------------------------------------------------------
 
 class elk::logstash(
-  $ensure          = 'running',
-  $ssl_receiver    = false,
+  $ensure                         = 'running',
+  $ssl_receiver                   = false,
+  $logstash_listener_hostname     = 'localhost',
+  $logstash_ssl_listener_hostname = 'localhost',
+  $logstash_es_listener_hostname  = 'localhost',
   ) {
   $defaults = {
     'LS_USER' => 'root',
