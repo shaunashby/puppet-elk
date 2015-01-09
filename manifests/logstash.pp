@@ -97,7 +97,7 @@ class elk::logstash(
       logstash::configfile { 'syslog-tcp-ssl-receiver':
         content => template('elk/etc/logstash/conf.d/syslog-tcp-ssl-receiver.conf.erb'),
         order  => 20,
-      }
+      } -> File["${logstash_ssl_listener_host_cert}"]
     }
 
     logstash::configfile { 'syslog-timestamp-filter':
