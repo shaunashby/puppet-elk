@@ -14,6 +14,7 @@ class elk::params {
   $ensure           = 'running'
   $es_instance_name = 'DFI'
   $es_cluster_name  = 'DFI-elk'
+  $es_data_dir      = '/data/elasticsearch'
 
   case $::osfamily {
     'Debian': {}
