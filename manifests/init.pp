@@ -43,6 +43,8 @@ class elk(
     fail('ensure parameter must be running or stopped')
   }
 
-  class { 'elk::logstash': }
+  class { 'elk::logstash':
+    ensure       => $_ensure,
+  }
 
 }
