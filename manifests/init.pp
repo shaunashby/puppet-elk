@@ -33,7 +33,7 @@
 # Copyright 2014 Shaun ASHBY, DFI Service SA.
 #
 class elk(
-  $ensure = $elk::params::ensure
+  $ensure          = $elk::params::ensure
   ) inherits elk::params {
 
   # Validate parameters:
