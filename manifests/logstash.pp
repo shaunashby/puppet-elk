@@ -16,7 +16,7 @@ class elk::logstash {
     'LS_OPTS' => '-w 4'
   }
 
-  class { "::logstash":
+  class { '::logstash':
     init_defaults => $defaults,
     package_url   => "https://download.elasticsearch.org/logstash/logstash/packages/centos/logstash-1.4.2-1_2c0f5a1.noarch.rpm",
   }
