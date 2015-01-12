@@ -49,6 +49,6 @@ class elk(
     ensure                         => $_ensure,
     ssl_receiver                   => true,
     logstash_ssl_listener_hostname => "${fqdn}",
-  }
+  }->Class['elk::elasticsearch']
 
 }
