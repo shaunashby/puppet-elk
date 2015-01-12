@@ -35,6 +35,7 @@
 class elk(
   $ensure          = $elk::params::ensure,
   $enable_webui    = $elk::params::enable_webui,
+  $webui_www_root  = $elk::params::webui_www_root,
   ) inherits elk::params {
 
   # Validate parameters:
@@ -54,5 +55,10 @@ class elk(
 
   if $enable_webui == true {
     class { 'nginx': }
+    nginx::resource::vhost { "${::fqdn}":
+      www_root => "${webui_www_root}",
+    }
+
+    class { 'elk::kibana': }
   }
 }

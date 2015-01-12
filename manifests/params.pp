@@ -18,6 +18,8 @@ class elk::params {
   $es_data_dir        = '/data/elasticsearch'
   $enable_webui       = true
 
+  $webui_www_root = '/usr/share/kibana'
+
   case $::osfamily {
     'Debian': {}
     'RedHat': {
