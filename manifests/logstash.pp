@@ -29,6 +29,7 @@ class elk::logstash(
   if $ensure == 'present' {
 
     yumrepo { 'logstash-1.4':
+      ensure   => present,
       baseurl  => 'http://packages.elasticsearch.org/logstash/1.4/centos',
       descr    => 'Logstash RPM repository at elasticsearch.org',
       gpgkey   => 'http://packages.elasticsearch.org/GPG-KEY-elasticsearch',
