@@ -11,7 +11,8 @@
 #--------------------------------------------------------------------
 class elk::elasticsearch() inherits elk::params {
   class { '::elasticsearch':
-    config => {
+    version => "${es_default_version}",
+    config  => {
       'cluster.name' => 'DFI-elk',
       'discovery.zen.ping.multicast.enabled' => false,
     },
