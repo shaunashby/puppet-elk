@@ -27,11 +27,20 @@ class elk::logstash(
   }
 
   if $ensure == 'present' {
+
+    yumrepo { 'logstash-1.4':
+      baseurl  => 'http://packages.elasticsearch.org/logstash/1.4/centos',
+      descr    => 'Logstash RPM repository at elasticsearch.org',
+      gpgkey   => 'http://packages.elasticsearch.org/GPG-KEY-elasticsearch',
+      gpgcheck => 1,
+      enabled  => 1,
+    }
+
     class { '::logstash':
       init_defaults   => $defaults,
       version         => "${logstash_default_version}",
       ensure          => $ensure,
-    }
+    } -> Yumrepo['logstash-1.4']
 
     logstash::configfile { 'syslog-udp-receiver':
       content => template('elk/etc/logstash/conf.d/syslog-udp-receiver.conf.erb'),
