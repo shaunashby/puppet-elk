@@ -12,7 +12,7 @@
 
 class elk::params {
   $ensure             = 'running'
-  $es_default_version = '1.2.4'
+  $es_default_version = '1.2.4-1'
   $es_instance_name   = 'DFI'
   $es_cluster_name    = 'DFI-elk'
   $es_data_dir        = '/data/elasticsearch'
