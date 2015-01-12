@@ -16,6 +16,7 @@ class elk::params {
   $es_instance_name   = 'DFI'
   $es_cluster_name    = 'DFI-elk'
   $es_data_dir        = '/data/elasticsearch'
+  $enable_webui       = true
 
   case $::osfamily {
     'Debian': {}

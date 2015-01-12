@@ -33,7 +33,8 @@
 # Copyright 2014 Shaun ASHBY, DFI Service SA.
 #
 class elk(
-  $ensure          = $elk::params::ensure
+  $ensure          = $elk::params::ensure,
+  $enable_webui    = $elk::params::enable_webui,
   ) inherits elk::params {
 
   # Validate parameters:
@@ -51,4 +52,7 @@ class elk(
     logstash_ssl_listener_hostname => "${fqdn}",
   }->Class['elk::elasticsearch']
 
+  if $enable_webui == true {
+    class { 'nginx': }
+  }
 }
