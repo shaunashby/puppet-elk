@@ -13,13 +13,15 @@ class elk::elasticsearch() inherits elk::params {
   class { '::elasticsearch':
     version => "${es_default_version}",
     config  => {
-      'cluster.name' => 'DFI-elk',
+      'cluster.name'                         => 'DFI-elk',
       'discovery.zen.ping.multicast.enabled' => false,
     },
   }
 
   elasticsearch::instance { "${es_instance_name}":
-    config  => { 'node.name' => 'DFI Log Aggregator' },
+    config  => {
+      'node.name' => 'DFI Log Aggregator'
+    },
     datadir => [ $es_data_dir ],
   }
 }
