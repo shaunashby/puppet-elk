@@ -16,6 +16,7 @@ class elk::logstash(
   $ssl_enable                     = false,
   $ssl_verify                     = true,
   $ssl_certs_basedir              = '/etc/pki/logstash',
+  $logstash_default_version       = '1.4.2-1_2c0f5a1',
   $logstash_listener_hostname     = 'localhost',
   $logstash_ssl_listener_hostname = 'localhost',
   $logstash_es_listener_hostname  = 'localhost',
@@ -28,6 +29,7 @@ class elk::logstash(
   if $ensure == 'present' {
     class { '::logstash':
       init_defaults   => $defaults,
+      version         => "${logstash_default_version}",
       ensure          => $ensure,
     }
 
