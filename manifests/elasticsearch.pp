@@ -10,7 +10,12 @@
 #
 #--------------------------------------------------------------------
 class elk::elasticsearch() inherits elk::params {
-  class { '::elasticsearch': }
+  class { '::elasticsearch':
+    config => {
+      'cluster.name' => 'DFI-elk',
+      'discovery.zen.ping.multicast.enabled' => false,
+    },
+  }
 
   elasticsearch::instance { "${es_instance_name}":
     config  => { 'node.name' => 'DFI Log Aggregator' },
