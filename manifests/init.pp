@@ -36,7 +36,6 @@ class elk(
   $ensure          = $elk::params::ensure,
   $enable_webui    = $elk::params::enable_webui,
   $webui_www_root  = $elk::params::webui_www_root,
-  $kibana_version  = $elk::params::kibana_version,
   ) inherits elk::params {
 
   # Validate parameters:
@@ -63,7 +62,7 @@ class elk(
     }
 
     class { 'elk::kibana':
-      version  => "${kibana_version}",
+      version  => "${elk::params::kibana_version}",
       src_root => "${webui_www_root}",
     }
   }
