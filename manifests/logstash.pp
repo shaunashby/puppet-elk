@@ -20,8 +20,8 @@ class elk::logstash(
   $logstash_listener_hostname     = 'localhost',
   $logstash_ssl_listener_hostname = 'localhost',
   $logstash_es_listener_hostname  = 'localhost',
-  $logstash_es_index_format       = 'logstash-%{+YYYY.MM.dd}'
-  $logstash_es_clustername        = 'LS-test'
+  $logstash_es_index_format       = 'logstash-%{+YYYY.MM.dd}',
+  $logstash_es_cluster_name       = 'LS-test',
   ) {
   $defaults = {
     'LS_USER' => 'root',
