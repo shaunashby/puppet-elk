@@ -15,6 +15,7 @@ class elk::params {
   $es_default_version = '1.2.4-1'
   $es_instance_name   = 'DFI'
   $es_cluster_name    = 'DFI-elk'
+  $es_cnode_name      = 'DFI Log Aggregator'
   $es_data_dir        = '/data/elasticsearch'
   $enable_webui       = true
 

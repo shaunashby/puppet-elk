@@ -30,7 +30,7 @@ class elk::elasticsearch() inherits elk::params {
 
   elasticsearch::instance { "${es_instance_name}":
     config  => {
-      'node.name' => 'DFI Log Aggregator'
+      'node.name' => "${es_cnode_name}"
     },
     datadir => [ $es_data_dir ],
   }
