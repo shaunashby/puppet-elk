@@ -19,6 +19,7 @@ class elk::params {
   $enable_webui       = true
 
   $webui_www_root = '/usr/share/kibana'
+  $kibana_version = '3.1.2'
 
   case $::osfamily {
     'Debian': {}
