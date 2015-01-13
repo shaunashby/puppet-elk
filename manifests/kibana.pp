@@ -12,7 +12,7 @@
 class elk::kibana($src_root='/tmp',$version='3.1.2') {
   notice("${class} not yet configured.")
 
-  file { "kibana ${version} source tree" :
+  file { "kibana ${version} source tree":
     path    => "${src_root}",
     ensure  => directory,
     recurse => true,
