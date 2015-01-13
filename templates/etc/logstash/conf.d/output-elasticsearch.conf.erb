@@ -3,8 +3,8 @@ output {
         elasticsearch {
                 host     => "<%= @logstash_es_listener_hostname %>"
                 port     => "9200"
-                cluster  => "DFI-elk"
-                index    => "dfi-%{+YYYY.MM.dd}"
+                cluster  => "<%= @logstash_es_clustername %>"
+                index    => "<%= @logstash_es_index_format %>"
                 protocol => "http"
         }
 }
