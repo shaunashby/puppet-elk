@@ -23,7 +23,7 @@ class elk::elasticsearch() inherits elk::params {
   class { '::elasticsearch':
     version => "${es_default_version}",
     config  => {
-      'cluster.name'                         => 'DFI-elk',
+      'cluster.name'                         => "${es_cluster_name}",
       'discovery.zen.ping.multicast.enabled' => false,
     },
   } -> Yumrepo['elasticsearch-1.2']
