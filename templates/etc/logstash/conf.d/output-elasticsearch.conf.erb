@@ -1,7 +1,7 @@
 #
 output {
         elasticsearch {
-                host     => "<%= @logstash_es_listener_hostname %>"
+                host     => "<%= @logstash_es_hostname %>"
                 port     => "9200"
                 cluster  => "<%= @logstash_es_cluster_name %>"
                 index    => "<%= @logstash_es_index_format %>"
