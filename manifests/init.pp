@@ -66,7 +66,6 @@ class elk(
       version               => "${elk::params::kibana_version}",
       src_root              => "${webui_www_root}",
       kibana_dashboard_name => 'DFI',
-      kibana_def_route      => "/dashboard/file/${kibana_dashboard_name}.json",
     }
   }
 }
