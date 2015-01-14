@@ -15,7 +15,7 @@ class elk::kibana($src_root='/tmp',$version='3.1.2', $kibana_dashboard_name='def
     path    => "${src_root}",
     owner   => 'root',
     group   => 'root',
-    mode    => '0640',
+    mode    => '0644',
     ensure  => directory,
     recurse => true,
     source  => "puppet:///modules/elk/usr/share/kibana-${version}",
