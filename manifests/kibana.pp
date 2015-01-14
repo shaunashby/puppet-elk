@@ -38,5 +38,6 @@ class elk::kibana($src_root='/tmp',$version='3.1.2', $kibana_dashboard_name='def
     group   => 'root',
     mode    => '0644',
     content => template('elk/usr/share/kibana/src/config.js.erb'),
+    require => File["kibana ${version} source tree"]
   }
 }
