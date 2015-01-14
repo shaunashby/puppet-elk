@@ -34,6 +34,9 @@ class elk::kibana($src_root='/tmp',$version='3.1.2', $kibana_dashboard_name='def
   file { 'kibana config.js':
     ensure  => present,
     path    => "${src_root}/src/config.js",
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
     content => template('elk/usr/share/kibana/src/config.js.erb'),
   }
 }
