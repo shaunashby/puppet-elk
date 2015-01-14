@@ -19,7 +19,7 @@ class elk::logstash(
   $logstash_default_version       = '1.4.2-1_2c0f5a1',
   $logstash_listener_hostname     = 'localhost',
   $logstash_ssl_listener_hostname = 'localhost',
-  $logstash_es_listener_hostname  = 'localhost',
+  $logstash_es_hostname           = 'localhost',
   $logstash_es_index_format       = 'logstash-%{+YYYY.MM.dd}',
   $logstash_es_cluster_name       = 'LS-test',
   ) {

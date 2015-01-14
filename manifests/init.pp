@@ -52,7 +52,8 @@ class elk(
     ssl_receiver                   => true,
     logstash_ssl_listener_hostname => "${fqdn}",
     logstash_es_index_format       => 'dfi-%{+YYYY.MM.dd}',
-    logstash_es_cluster_name       => "${elk::params::es_cluster_name}"
+    logstash_es_cluster_name       => "${elk::params::es_cluster_name}",
+    logstash_es_hostname           => "${elk::params::es_host_name}",
     }->Class['elk::elasticsearch']
 
   if $enable_webui == true {
