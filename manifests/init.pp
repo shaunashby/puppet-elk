@@ -59,6 +59,13 @@ class elk(
   if $enable_webui == true {
     class { 'nginx': }
 
+    file { '/etc/nginx/conf.d/auth':
+      ensure  => directory,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+    }
+
     nginx::resource::vhost { "localhost":
       ensure               => present,
       www_root             => "${webui_www_root}",
