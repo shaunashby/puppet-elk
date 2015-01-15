@@ -59,6 +59,10 @@ class elk(
   if $enable_webui == true {
     class { 'nginx': }
 
+    package { 'httpd-tools':
+      ensure => present,
+    }
+
     file { '/etc/nginx/conf.d/auth':
       ensure  => directory,
       owner   => 'root',
