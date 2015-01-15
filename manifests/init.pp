@@ -70,6 +70,19 @@ class elk(
       mode    => '0644',
     }
 
+    file { '/etc/nginx/conf.d/auth/elk.htpasswd':
+      ensure  => present,
+      path    => '/etc/nginx/conf.d/auth/elk.htpasswd',
+      content => 'admin:$apr1$4oNLAMlL$jRo0PTDNGMmD6YeXXC5ln/',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      require => [
+                  Package['httpd-tools'],
+                  File['/etc/nginx/conf.d/auth'],
+                  ],
+    }
+
     nginx::resource::vhost { "localhost":
       ensure               => present,
       www_root             => "${webui_www_root}",
