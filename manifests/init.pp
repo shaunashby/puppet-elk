@@ -58,8 +58,13 @@ class elk(
 
   if $enable_webui == true {
     class { 'nginx': }
-    nginx::resource::vhost { "${::fqdn}":
-      www_root => "${webui_www_root}",
+
+    nginx::resource::vhost { "localhost":
+      ensure               => present,
+      www_root             => "${webui_www_root}",
+      auth_basic           => 'DFI Kibana Web',
+      auth_basic_user_file => '/etc/nginx/conf.d/auth/elk.htpasswd',
+      listen_port          => 8080,
     }
 
     class { 'elk::kibana':
