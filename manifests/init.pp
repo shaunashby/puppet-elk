@@ -59,10 +59,6 @@ class elk(
   if $enable_webui == true {
     class { 'nginx': }
 
-    package { 'httpd-tools':
-      ensure => present,
-    }
-
     file { '/etc/nginx/conf.d/auth':
       ensure  => directory,
       owner   => 'root',
@@ -77,10 +73,7 @@ class elk(
       owner   => 'root',
       group   => 'root',
       mode    => '0444',
-      require => [
-                  Package['httpd-tools'],
-                  File['/etc/nginx/conf.d/auth'],
-                  ],
+      require => File['/etc/nginx/conf.d/auth'],
     }
 
     nginx::resource::vhost { "${fqdn}":
