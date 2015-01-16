@@ -69,7 +69,7 @@ class elk(
     file { '/etc/nginx/conf.d/auth/elk.htpasswd':
       ensure  => present,
       path    => '/etc/nginx/conf.d/auth/elk.htpasswd',
-      content => 'admin:$apr1$4oNLAMlL$jRo0PTDNGMmD6YeXXC5ln/',
+      content => 'admin:{SHA}5dYSM8im55ejohUfCeS7vJNCvCk=',
       owner   => 'root',
       group   => 'root',
       mode    => '0444',
