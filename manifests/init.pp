@@ -83,12 +83,12 @@ class elk(
                   ],
     }
 
-    nginx::resource::vhost { "localhost":
+    nginx::resource::vhost { "${fqdn}":
       ensure               => present,
       www_root             => "${webui_www_root}",
       auth_basic           => 'DFI Kibana Web',
       auth_basic_user_file => '/etc/nginx/conf.d/auth/elk.htpasswd',
-      listen_port          => 8080,
+      listen_port          => 80,
     }
 
     class { 'elk::kibana':
