@@ -76,7 +76,7 @@ class elk(
       content => 'admin:$apr1$4oNLAMlL$jRo0PTDNGMmD6YeXXC5ln/',
       owner   => 'root',
       group   => 'root',
-      mode    => '0644',
+      mode    => '0444',
       require => [
                   Package['httpd-tools'],
                   File['/etc/nginx/conf.d/auth'],
