@@ -2,7 +2,7 @@
   "name": "dfi-elk",
   "version": "0.1.0",
   "author": "sashby@dfi.ch",
-  "summary": "Manage an ELK stack",
+  "summary": "A module to manage an ELK stack",
   "license": "Apache 2.0",
   "source": "",
   "issues_url": null,
