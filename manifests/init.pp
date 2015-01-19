@@ -88,7 +88,7 @@ class elk(
       require => File['/etc/nginx/conf.d/auth'],
     }
 
-    nginx::resource::vhost { "${fqdn}":
+    nginx::resource::vhost { $::fqdn:
       ensure               => present,
       www_root             => $webui_www_root,
       auth_basic           => 'DFI Kibana Web',
