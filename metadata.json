@@ -8,7 +8,16 @@
   "issues_url": null,
   "project_page": null,
   "dependencies": [
-    {"version_requirement":">= 1.0.0","name":"puppetlabs-stdlib"}
+    {
+      "version_requirement":">= 1.0.0",
+      "name":"puppetlabs-stdlib"},
+    {
+      "version_requirement":">= 0.5.1",
+      "name":"elasticsearch-logstash"},
+    {
+      "version_requirement":">= 0.4.0",
+      "name":"elasticsearch-elasticsearch"
+    }
   ]
 }
 
