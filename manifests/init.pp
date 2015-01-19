@@ -7,18 +7,30 @@
 # Document parameters here.
 #
 # [*ensure*]
-#   Make sure that the stack is running.
+#   Make sure that logstash and Elasticsearch are configured and running.
+#
+# [*enable_webui*]
+#   Configure the web interface (Kibana3).
 #
 # === Variables
 #
 # Here you should define a list of variables that this module would require.
 #
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
-#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should be avoided in favor of class parameters as
-#   of Puppet 2.6.)
+# [*webui_www_root*]
+#   When the parameter enable_webgui is set, pass the root of the Kibana
+#   installation using this variable.
+# [* ssl_receiver *]
+#   Enable the SSL listener in logstash, rather than plain TCP.
+# [* logstash_ssl_listener_hostname *]
+#   The name of the host where the logstash receiver is listening.
+# [* logstash_es_index_format *]
+#   The naming format for indices created automatically by Elasticsearch.
+# [* logstash_es_cluster_name *]
+#   The name of the Elasticsearch cluster.
+# [* logstash_es_hostname *]
+#   The host name of the Elasticsearch server.
+# [* kibana_dashboard_name *]
+#   The name of the dashboard to present as default from the landing page.
 #
 # === Examples
 #
