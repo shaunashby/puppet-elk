@@ -40,9 +40,9 @@ class elk::logstash(
     }
 
     class { '::logstash':
-      init_defaults   => $defaults,
-      version         => "${logstash_default_version}",
-      ensure          => $ensure,
+      ensure        => $ensure,
+      init_defaults => $defaults,
+      version       => $logstash_default_version,
     } -> Yumrepo['logstash-1.4']
 
     logstash::configfile { 'syslog-udp-receiver':
