@@ -13,7 +13,7 @@ class elk::kibana($src_root='/tmp',$version='3.1.2', $kibana_dashboard_name='def
 
   file { "kibana ${version} source tree":
     ensure  => directory,
-    path    => "${src_root}",
+    path    => $src_root,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
