@@ -62,20 +62,20 @@ class elk(
   class { 'elk::logstash':
     ensure                         => $_ensure,
     ssl_receiver                   => true,
-    logstash_ssl_listener_hostname => "${fqdn}",
+    logstash_ssl_listener_hostname => $::fqdn,
     logstash_es_index_format       => 'dfi-%{+YYYY.MM.dd}',
-    logstash_es_cluster_name       => "${elk::params::es_cluster_name}",
-    logstash_es_hostname           => "${elk::params::es_host_name}",
+    logstash_es_cluster_name       => $elk::params::es_cluster_name,
+    logstash_es_hostname           => $elk::params::es_host_name,
     }->Class['elk::elasticsearch']
 
   if $enable_webui == true {
     class { 'nginx': }
 
     file { '/etc/nginx/conf.d/auth':
-      ensure  => directory,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
+      ensure => directory,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
     }
 
     file { '/etc/nginx/conf.d/auth/elk.htpasswd':
@@ -90,15 +90,15 @@ class elk(
 
     nginx::resource::vhost { "${fqdn}":
       ensure               => present,
-      www_root             => "${webui_www_root}",
+      www_root             => $webui_www_root,
       auth_basic           => 'DFI Kibana Web',
       auth_basic_user_file => '/etc/nginx/conf.d/auth/elk.htpasswd',
       listen_port          => 80,
     }
 
     class { 'elk::kibana':
-      version               => "${elk::params::kibana_version}",
-      src_root              => "${webui_www_root}",
+      version               => $elk::params::kibana_version,
+      src_root              => $webui_www_root,
       kibana_dashboard_name => 'DFI',
     }
   }
