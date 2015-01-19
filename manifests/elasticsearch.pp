@@ -21,17 +21,17 @@ class elk::elasticsearch() inherits elk::params {
   }
 
   class { '::elasticsearch':
-    version => "${es_default_version}",
+    version => $elk::params::es_default_version,
     config  => {
-      'cluster.name'                         => "${es_cluster_name}",
+      'cluster.name'                         => $elk::params::es_cluster_name,
       'discovery.zen.ping.multicast.enabled' => false,
     },
   } -> Yumrepo['elasticsearch-1.2']
 
-  elasticsearch::instance { "${es_instance_name}":
+  elasticsearch::instance { $elk::params::es_instance_name:
     config  => {
-      'node.name' => "${es_cnode_name}"
+      'node.name' => $elk::params::es_cnode_name
     },
-    datadir => [ $es_data_dir ],
+    datadir => [ $elk::params::es_data_dir ],
   }
 }
