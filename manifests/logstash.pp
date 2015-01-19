@@ -52,7 +52,7 @@ class elk::logstash(
 
     if $ssl_receiver == true {
       # Set up the SSL certificates:
-      file { "${ssl_certs_basedir}":
+      file { $ssl_certs_basedir:
         ensure => directory,
         owner  => 'root',
         group  => 'root',
@@ -64,7 +64,7 @@ class elk::logstash(
         owner   => 'root',
         group   => 'root',
         mode    => '0600',
-        require => File["${ssl_certs_basedir}"],
+        require => File[$ssl_certs_basedir],
       }
 
       file { "${ssl_certs_basedir}/private":
@@ -72,12 +72,12 @@ class elk::logstash(
         owner   => 'root',
         group   => 'root',
         mode    => '0600',
-        require => File["${ssl_certs_basedir}"],
+        require => File[$ssl_certs_basedir],
       }
 
-      $logstash_ssl_listener_ca_cert = "/etc/pki/logstash/certs/ca.pem"
+      $logstash_ssl_listener_ca_cert = '/etc/pki/logstash/certs/ca.pem'
 
-      file { "${logstash_ssl_listener_ca_cert}":
+      file { $logstash_ssl_listener_ca_cert:
         ensure  => present,
         owner   => 'root',
         group   => 'root',
@@ -88,7 +88,7 @@ class elk::logstash(
 
       $logstash_ssl_listener_host_cert = "/etc/pki/logstash/certs/${logstash_ssl_listener_hostname}.cert.pem"
 
-      file { "${logstash_ssl_listener_host_cert}":
+      file { $logstash_ssl_listener_host_cert:
         ensure  => present,
         owner   => 'root',
         group   => 'root',
@@ -99,7 +99,7 @@ class elk::logstash(
 
       $logstash_ssl_listener_host_key  = "/etc/pki/logstash/private/${logstash_ssl_listener_hostname}.key.pem"
 
-      file { "${logstash_ssl_listener_host_key}":
+      file { $logstash_ssl_listener_host_key:
         ensure  => present,
         owner   => 'root',
         group   => 'root',
@@ -111,7 +111,7 @@ class elk::logstash(
       logstash::configfile { 'syslog-tcp-ssl-receiver':
         content => template('elk/etc/logstash/conf.d/syslog-tcp-ssl-receiver.conf.erb'),
         order   => 20,
-      } -> File["${logstash_ssl_listener_host_cert}"]
+      } -> File[$logstash_ssl_listener_host_cert]
     }
 
     logstash::configfile { 'syslog-timestamp-filter':
