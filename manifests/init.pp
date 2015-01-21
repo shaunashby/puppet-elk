@@ -19,10 +19,13 @@
 # [*webui_www_root*]
 #   When the parameter enable_webgui is set, pass the root of the Kibana
 #   installation using this variable.
-# [* ssl_receiver *]
+# [* ssl_enable *]
 #   Enable the SSL listener in logstash, rather than plain TCP.
 # [* logstash_ssl_listener_hostname *]
 #   The name of the host where the logstash receiver is listening.
+# [* logstash_listener_hostname *]
+#   The name of the host where the logstash receiver is listening if not
+#   using SSL.
 # [* logstash_es_index_format *]
 #   The naming format for indices created automatically by Elasticsearch.
 # [* logstash_es_cluster_name *]
