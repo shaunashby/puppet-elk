@@ -50,7 +50,7 @@ class elk::logstash(
       order   => 10,
     }
 
-    if $ssl_receiver == true {
+    if $ssl_enable == true {
       # Set up the SSL certificates:
       file { $ssl_certs_basedir:
         ensure => directory,
@@ -111,7 +111,12 @@ class elk::logstash(
       logstash::configfile { 'syslog-tcp-ssl-receiver':
         content => template('elk/etc/logstash/conf.d/syslog-tcp-ssl-receiver.conf.erb'),
         order   => 20,
-      } -> File[$logstash_ssl_listener_host_cert]
+        } -> File[$logstash_ssl_listener_host_cert]
+    } else {
+      logstash::configfile { 'syslog-tcp-receiver':
+        content => template('elk/etc/logstash/conf.d/syslog-ssl-receiver.conf.erb'),
+        order   => 20,
+      }
     }
 
     logstash::configfile { 'syslog-timestamp-filter':

@@ -1,0 +1,8 @@
+#
+input {
+        tcp {
+                host       => "<%= @logstash_listener_hostname %>"
+                port       => 514
+                type       => syslog
+        }
+}
