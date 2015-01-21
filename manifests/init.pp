@@ -61,7 +61,7 @@ class elk(
 
   class { 'elk::logstash':
     ensure                         => $_ensure,
-    ssl_receiver                   => true,
+    ssl_enable                     => true,
     logstash_ssl_listener_hostname => $::fqdn,
     logstash_es_index_format       => 'dfi-%{+YYYY.MM.dd}',
     logstash_es_cluster_name       => $elk::params::es_cluster_name,

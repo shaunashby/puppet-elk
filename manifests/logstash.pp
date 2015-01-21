@@ -12,7 +12,6 @@
 
 class elk::logstash(
   $ensure                         = 'running',
-  $ssl_receiver                   = false,
   $ssl_enable                     = false,
   $ssl_verify                     = true,
   $ssl_certs_basedir              = '/etc/pki/logstash',
