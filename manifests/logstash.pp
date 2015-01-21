@@ -113,7 +113,7 @@ class elk::logstash(
         } -> File[$logstash_ssl_listener_host_cert]
     } else {
       logstash::configfile { 'syslog-tcp-receiver':
-        content => template('elk/etc/logstash/conf.d/syslog-ssl-receiver.conf.erb'),
+        content => template('elk/etc/logstash/conf.d/syslog-tcp-receiver.conf.erb'),
         order   => 20,
       }
     }
