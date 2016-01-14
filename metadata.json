@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "author": "sashby@dfi.ch",
   "summary": "A module to manage an ELK stack",
-  "license": "Apache 2.0",
+  "license": "GPL-3.0",
   "source": "",
   "issues_url": null,
   "project_page": null,
