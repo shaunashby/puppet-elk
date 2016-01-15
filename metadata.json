@@ -18,6 +18,20 @@
       "version_requirement":">= 0.4.0",
       "name":"elasticsearch-elasticsearch"
     }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }
   ]
 }
 
