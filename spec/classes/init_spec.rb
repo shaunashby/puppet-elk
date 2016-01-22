@@ -8,6 +8,7 @@ describe 'elk' do
       end
 
       it { is_expected.to compile.with_all_deps }
+      it { should contain_class('elk') }
 
     end # each OS
   end # supported OS
