@@ -23,7 +23,7 @@
     {
 	"version_requirement": ">= 0.2.7",
 	"name": "jfryman-nginx"
-    },
+    }
   ],
   "operatingsystem_support": [
     {
