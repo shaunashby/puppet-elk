@@ -1,7 +1,0 @@
-HOSTS:
-  centos-7-x64:
-    platform: el-7-x86_64
-    hypervisor: docker
-    image: centos:latest
-CONFIG:
-  type: foss
