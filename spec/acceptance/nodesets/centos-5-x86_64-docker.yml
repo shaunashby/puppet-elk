@@ -1,0 +1,10 @@
+HOSTS:
+  centos-5-x86_64:
+    platform: el-5-x86_64
+    hypervisor: docker
+    image: centos:centos5
+    docker_cmd: '["sh", "-c", "/sbin/service sshd start ; tail -f /dev/null"]'
+    docker_preserve_image: true
+CONFIG:
+  type: foss
+  log_level: verbose

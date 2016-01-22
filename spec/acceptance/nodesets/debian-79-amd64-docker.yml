@@ -1,0 +1,12 @@
+HOSTS:
+  debian-79-x64:
+    platform: debian-7-amd64
+    hypervisor: docker
+    image: debian:7.9
+    docker_cmd: '["/sbin/init"]'
+    docker_image_commands:
+      - 'apt-get install wget'
+    docker_preserve_image: true
+CONFIG:
+  type: foss
+  log_level: verbose
