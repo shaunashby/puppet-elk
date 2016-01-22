@@ -4,7 +4,9 @@ describe 'elk' do
   on_supported_os.each do |os,facts|
     context "on OS #{os}" do
       let(:facts) do
-        facts
+        facts.merge( {
+                       :concat_basedir => '/fake'
+                     } )
       end
 
       it { is_expected.to compile.with_all_deps }
